@@ -1,0 +1,26 @@
+<p fundoAmarelo>
+  texto com fundo amarelo
+</p>
+
+
+<button fundoAmarelo>teste de botão amarelo</button>
+<!--
+<p HighlightMouse>Highlight mouse teste</p>
+-->
+<p Highlight [defaultColor]="'gray'" [highlightColor]="'red'">teste com input()</p>
+
+<div>
+  <div *ngElse="!mostrarCursos">
+    Existem cursos para serem listados
+  </div>
+  <div *ngElse="mostrarCursos">
+    Não existem cursos para serem listados
+  </div>
+  <button (click)="onMostrarCurso()">Mostrar ou esconder cursos</button>
+
+  <template [ngElse]="mostrarCursos">
+    <div>
+      Não existem cursos para serem listados
+    </div>
+  </template>
+</div>

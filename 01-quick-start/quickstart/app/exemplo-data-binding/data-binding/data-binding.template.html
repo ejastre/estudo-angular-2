@@ -1,0 +1,96 @@
+
+
+<section class="property-binding">
+    <article>
+        <h3>teste de databinding pelo componente</h3>
+        <p>string renderizada com interpolação {{url}}</p>
+        <p>valor de 1+1 é {{ getValue()}}</p>
+        <div>
+            <img style="height: 100px" [src]="urlImg" />
+<img style="height: 100px" src="{{urlImg}}" />
+<img style="height: 100px" bind-src="urlImg" />
+</div>
+</article>
+
+<article>
+    <h3>Class e style bindings</h3>
+    Selecione uma classe
+    <select #classe (change)="0">
+            <option value="alert-success">Sucesso</option>
+            <option value="alert-info">Info</option>
+            <option value="alert-warning">Warning</option>
+            <option value="alert-danger">Error</option>
+        </select>
+
+    <div class="alert {{classe.value}}">essa div tem a classe selecionada no exemplo</div>
+
+    <div class="alert" [class.alert-success]='classe.value ==  "alert-success" ' role="alert">Sucesso</div>
+    <div class="alert" [class.alert-info]='classe.value ==  "alert-info" ' role="alert">Info</div>
+    <div class="alert" [class.alert-warning]='classe.value ==  "alert-warning" ' role="alert">Warning</div>
+    <div class="alert" [class.alert-danger]='classe.value ==  "alert-danger"' role="alert">Error</div>
+
+
+    <div class="alert alert-danger" [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'">
+        Esse texto só aparece em caso de erro
+    </div>
+</article>
+</section>
+
+<section>
+    <article>
+        <h3>event bindings</h3>
+        <div>
+            <button type="button" (click)="onClick()">me clique</button>
+            <br><br>
+            <input type="text" (keyup)="onKeyUp($event)" (keyup.enter)="onSave($event.target.value)" (blur)="onSave(campo.value)" #campo>
+            <div>conteudo atual: {{conteudoAtual}} </div>
+            <div>conteudoSalvo: {{conteudoSalvo}}</div>
+            <div>conteudo campo.value: {{campo.value}}</div>
+        </div>
+
+        <br><br>
+
+        <div>
+            <span (mouseover)="onMouseSpan()" (mouseout)="onMouseSpan()" [class.highlight]="isMouseOver">nesse texto fica com hightlight</span>
+        </div>
+
+    </article>
+</section>
+
+<section>
+    <article>
+        <h3>Two-way data bindings</h3>
+        <div>
+            <input type="text" [value]="nome" (input)="nome = $event.target.value">
+            <br>
+            <input type="text" [ngModel]="nome" (ngModelChange)="nome = $event">
+
+            <input type="text" [(ngModel)]="nome">
+
+            <input type="text" bindon-ngModel="nome">
+            <p>
+                você digitou {{nome}}
+            </p>
+        </div>
+
+<div>
+    nome: <input type="text" [(ngModel)]="pessoa.nome">
+    idade: <input type="text" [(ngModel)]="pessoa.idade">
+    <div>
+        meu nome é {{pessoa.nome}} e minha idade é {{pessoa.idade}}
+    </div>
+</div>
+
+    </article>
+</section>
+
+<section>
+    <article>
+        <h3>Input/Output properties</h3>
+        <curso-teste nomeCurso="teste de nome curso" diferente="outro nome"></curso-teste>
+        <br>
+        <curso-teste [nomeCurso]="curso.Nome" [diferente]="curso.Detalhe"></curso-teste>
+        <br>
+        <contador valor="2" (mudouValor)="onMudouValor($event)"></contador>
+    </article>
+</section>

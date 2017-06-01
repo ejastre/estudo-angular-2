@@ -1,0 +1,23 @@
+<p>
+  diretiva-ngfor works!
+</p>
+<ul>
+  <li *ngFor="let item of cursos let i = index">
+    {{i + 1}} - {{item}}
+  </li>
+</ul>
+
+<ul>
+  <li template="ngFor let item of cursos let i = index">
+    {{i + 1}} - {{item}}
+  </li>
+</ul>
+
+
+<ul>
+  <template ngFor [ngForOf]="cursos" let-curso let-i="index">
+    <li>
+      {{i + 1}} - {{curso}}
+    </li>
+  </template>
+</ul>
